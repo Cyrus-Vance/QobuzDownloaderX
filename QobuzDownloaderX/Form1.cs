@@ -118,12 +118,12 @@ namespace QobuzDownloaderX
         private void Form1_Load(object sender, EventArgs e)
         {
             // Set main form size on launch and bring to center.
-            this.Height = 533;
+            //this.Height = 533;
             this.CenterToScreen();
 
             // Welcome the user after successful login.
             output.Invoke(new Action(() => output.Text = String.Empty));
-            output.Invoke(new Action(() => output.AppendText("Welcome " + displayName + "!\r\n")));
+            output.Invoke(new Action(() => output.AppendText("欢迎 " + displayName + "!\r\n")));
 
             // Show account type if user logged in normally.
             if (accountType == null | accountType == "")
@@ -132,16 +132,16 @@ namespace QobuzDownloaderX
             }
             else
             {
-                output.Invoke(new Action(() => output.AppendText("Qobuz Account Type - " + accountType + "\r\n\r\n")));
+                output.Invoke(new Action(() => output.AppendText("Qobuz账号类型 - " + accountType + "\r\n\r\n")));
             }
 
-            output.Invoke(new Action(() => output.AppendText("Your user_auth_token has been set for this session!")));
+            output.Invoke(new Action(() => output.AppendText("您的user_auth_token已经为本次会话设定完成!")));
 
             // Get and display version number.
             verNumLabel.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             // Set user agent for web requests (HttpClient, etc)
-            userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0";
+            userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
 
             // Set app_id & auth_token for the Search Form
             searchF.appid = appid;
@@ -865,17 +865,18 @@ namespace QobuzDownloaderX
                             switch (discTotal)
                             {
                                 case 1:
-                                    path4Full = path3Full;
+                                    path4Full = path2Full;
                                     break;
                                 default:
-                                    string[] path4 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", qualityPath, discFolder };
+                                    //string[] path4 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", qualityPath, discFolder };
+                                    string[] path4 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", discFolder };
                                     path4Full = Path.Combine(path4);
                                     break;
                             }
 
                             System.IO.Directory.CreateDirectory(path1Full);
                             System.IO.Directory.CreateDirectory(path2Full);
-                            System.IO.Directory.CreateDirectory(path3Full);
+                            //System.IO.Directory.CreateDirectory(path3Full);
                             System.IO.Directory.CreateDirectory(path4Full);
 
                             // Set albumPath to the created directories.
@@ -948,10 +949,10 @@ namespace QobuzDownloaderX
                                 switch (versionName)
                                 {
                                     case null:
-                                        output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
+                                        output.Invoke(new Action(() => output.AppendText("下载中 - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
                                         break;
                                     default:
-                                        output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
+                                        output.Invoke(new Action(() => output.AppendText("下载中 - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
                                         break;
                                 }
 
@@ -1270,7 +1271,7 @@ namespace QobuzDownloaderX
                             }
 
                             // Say when a track is done downloading, then wait for the next track / end.
-                            output.Invoke(new Action(() => output.AppendText("Track Download Done!\r\n")));
+                            output.Invoke(new Action(() => output.AppendText("曲目下载完成！\r\n")));
                             System.Threading.Thread.Sleep(100);
                         }
 
@@ -1303,7 +1304,7 @@ namespace QobuzDownloaderX
 
                         // Say that downloading is completed.
                         output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
-                        output.Invoke(new Action(() => output.AppendText("Downloading job completed! All downloaded files will be located in your chosen path.")));
+                        output.Invoke(new Action(() => output.AppendText("下载任务已完成，全部曲目现已下载至您指定的目录中！")));
                         enableBoxes(sender, e);
                     }
                     catch (Exception ex)
@@ -1762,10 +1763,10 @@ namespace QobuzDownloaderX
                                 switch (versionName)
                                 {
                                     case null:
-                                        output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
+                                        output.Invoke(new Action(() => output.AppendText("下载中 - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
                                         break;
                                     default:
-                                        output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
+                                        output.Invoke(new Action(() => output.AppendText("下载中 - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
                                         break;
                                 }
 
@@ -2084,7 +2085,7 @@ namespace QobuzDownloaderX
                             }
 
                             // Say when a track is done downloading, then wait for the next track / end.
-                            output.Invoke(new Action(() => output.AppendText("Track Download Done!\r\n")));
+                            output.Invoke(new Action(() => output.AppendText("曲目下载完成！\r\n")));
                             System.Threading.Thread.Sleep(100);
                         }
 
@@ -2117,7 +2118,7 @@ namespace QobuzDownloaderX
 
                         // Say that downloading is completed.
                         output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
-                        output.Invoke(new Action(() => output.AppendText("Downloading job completed! All downloaded files will be located in your chosen path.")));
+                        output.Invoke(new Action(() => output.AppendText("下载任务已完成，全部曲目现已下载至您指定的目录中！")));
                         enableBoxes(sender, e);
                     }
                     catch (Exception ex)
@@ -2568,10 +2569,10 @@ namespace QobuzDownloaderX
                                 switch (versionName)
                                 {
                                     case null:
-                                        output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
+                                        output.Invoke(new Action(() => output.AppendText("下载中 - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
                                         break;
                                     default:
-                                        output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
+                                        output.Invoke(new Action(() => output.AppendText("下载中 - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
                                         break;
                                 }
 
@@ -2890,7 +2891,7 @@ namespace QobuzDownloaderX
                             }
 
                             // Say when a track is done downloading, then wait for the next track / end.
-                            output.Invoke(new Action(() => output.AppendText("Track Download Done!\r\n")));
+                            output.Invoke(new Action(() => output.AppendText("曲目下载完成！\r\n")));
                             System.Threading.Thread.Sleep(100);
                         }
 
@@ -2923,7 +2924,7 @@ namespace QobuzDownloaderX
 
                         // Say that downloading is completed.
                         output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
-                        output.Invoke(new Action(() => output.AppendText("Downloading job completed! All downloaded files will be located in your chosen path.")));
+                        output.Invoke(new Action(() => output.AppendText("下载任务已完成，全部曲目现已下载至您指定的目录中！")));
                         enableBoxes(sender, e);
                     }
                     catch (Exception ex)
@@ -3304,10 +3305,10 @@ namespace QobuzDownloaderX
                         switch (versionName)
                         {
                             case null:
-                                output.Invoke(new Action(() => output.AppendText("Downloading - " + performerName + " - " + trackName + " ......")));
+                                output.Invoke(new Action(() => output.AppendText("下载中 - " + performerName + " - " + trackName + " ......")));
                                 break;
                             default:
-                                output.Invoke(new Action(() => output.AppendText("Downloading - " + performerName + " - " + trackName + " (" + versionName + ")" + " ......")));
+                                output.Invoke(new Action(() => output.AppendText("下载中 - " + performerName + " - " + trackName + " (" + versionName + ")" + " ......")));
                                 break;
                         }
 
@@ -3626,13 +3627,13 @@ namespace QobuzDownloaderX
                     }
 
                     // Say when a track is done downloading, then wait for the next track / end.
-                    output.Invoke(new Action(() => output.AppendText("Track Download Done!\r\n")));
+                    output.Invoke(new Action(() => output.AppendText("曲目下载完成！\r\n")));
                     System.Threading.Thread.Sleep(100);
                 }
 
                 // Say that downloading is completed.
                 output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
-                output.Invoke(new Action(() => output.AppendText("Downloading job completed! All downloaded files will be located in your chosen path.")));
+                output.Invoke(new Action(() => output.AppendText("下载任务已完成，全部曲目现已下载至您指定的目录中！")));
                 enableBoxes(sender, e);
             }
             catch (Exception ex)
@@ -3664,7 +3665,7 @@ namespace QobuzDownloaderX
 
             // Empty output, then say Starting Downloads.
             output.Invoke(new Action(() => output.Text = String.Empty));
-            output.Invoke(new Action(() => output.AppendText("Starting Downloads...\r\n\r\n")));
+            output.Invoke(new Action(() => output.AppendText("开始下载...\r\n\r\n")));
 
             try
             {
@@ -3947,17 +3948,18 @@ namespace QobuzDownloaderX
                     switch (discTotal)
                     {
                         case 1:
-                            path4Full = path3Full;
+                            path4Full = path2Full;
                             break;
                         default:
-                            string[] path4 = { loc, albumArtistPath, albumNamePath, qualityPath, discFolder };
+                            //string[] path4 = { loc, albumArtistPath, albumNamePath, qualityPath, discFolder };
+                            string[] path4 = { loc, albumArtistPath, albumNamePath, discFolder };
                             path4Full = Path.Combine(path4);
                             break;
                     }
 
                     System.IO.Directory.CreateDirectory(path1Full);
                     System.IO.Directory.CreateDirectory(path2Full);
-                    System.IO.Directory.CreateDirectory(path3Full);
+                    //System.IO.Directory.CreateDirectory(path3Full);
                     System.IO.Directory.CreateDirectory(path4Full);
 
                     // Set albumPath to the created directories.
@@ -4030,10 +4032,10 @@ namespace QobuzDownloaderX
                         switch (versionName)
                         {
                             case null:
-                                output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
+                                output.Invoke(new Action(() => output.AppendText("下载中 - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
                                 break;
                             default:
-                                output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
+                                output.Invoke(new Action(() => output.AppendText("下载中 - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
                                 break;
                         }
 
@@ -4352,7 +4354,7 @@ namespace QobuzDownloaderX
                     }
 
                     // Say when a track is done downloading, then wait for the next track / end.
-                    output.Invoke(new Action(() => output.AppendText("Track Download Done!\r\n")));
+                    output.Invoke(new Action(() => output.AppendText("曲目下载完成！\r\n")));
                     System.Threading.Thread.Sleep(100);
                 }
 
@@ -4385,7 +4387,7 @@ namespace QobuzDownloaderX
 
                 // Say that downloading is completed.
                 output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
-                output.Invoke(new Action(() => output.AppendText("Downloading job completed! All downloaded files will be located in your chosen path.")));
+                output.Invoke(new Action(() => output.AppendText("下载任务已完成，全部曲目现已下载至您指定的目录中！")));
                 mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
                 enableBoxes(sender, e);
             }
@@ -4670,17 +4672,18 @@ namespace QobuzDownloaderX
             switch (discTotal)
             {
                 case 1:
-                    path4Full = path3Full;
+                    path4Full = path2Full;
                     break;
                 default:
-                    string[] path4 = { loc, albumArtistPath, albumNamePath, qualityPath, discFolder };
+                    //string[] path4 = { loc, albumArtistPath, albumNamePath, qualityPath, discFolder };
+                    string[] path4 = { loc, albumArtistPath, albumNamePath, discFolder };
                     path4Full = Path.Combine(path4);
                     break;
             }
 
             System.IO.Directory.CreateDirectory(path1Full);
             System.IO.Directory.CreateDirectory(path2Full);
-            System.IO.Directory.CreateDirectory(path3Full);
+            //System.IO.Directory.CreateDirectory(path3Full);
             System.IO.Directory.CreateDirectory(path4Full);
 
             // Set albumPath to the created directories.
@@ -4755,10 +4758,10 @@ namespace QobuzDownloaderX
                 switch (versionName)
                 {
                     case null:
-                        output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
+                        output.Invoke(new Action(() => output.AppendText("下载中 - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
                         break;
                     default:
-                        output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
+                        output.Invoke(new Action(() => output.AppendText("下载中 - " + trackNumber.ToString().PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
                         break;
                 }
 
@@ -5077,7 +5080,7 @@ namespace QobuzDownloaderX
             }
 
             // Say that downloading is completed.
-            output.Invoke(new Action(() => output.AppendText("Track Download Done!\r\n\r\n")));
+            output.Invoke(new Action(() => output.AppendText("曲目下载完成！\r\n\r\n")));
             output.Invoke(new Action(() => output.AppendText("File will be located in your selected path.")));
             enableBoxes(sender, e);
             #endregion
