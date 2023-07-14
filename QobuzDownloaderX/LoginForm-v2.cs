@@ -660,7 +660,7 @@ namespace QobuzDownloaderX
         #region Email Textbox
         private void emailTextbox_Click(object sender, EventArgs e)
         {
-            if (emailTextbox.Text == "Email")
+            if (emailTextbox.Text == "邮箱")
             {
                 emailTextbox.Text = null;
                 emailTextbox.ForeColor = Color.FromArgb(186, 186, 186);
@@ -672,7 +672,7 @@ namespace QobuzDownloaderX
             if (emailTextbox.Text == null | emailTextbox.Text == "")
             {
                 emailTextbox.ForeColor = Color.FromArgb(88, 92, 102);
-                emailTextbox.Text = "Email";
+                emailTextbox.Text = "邮箱";
             }
         }
         #endregion
@@ -680,7 +680,7 @@ namespace QobuzDownloaderX
         #region Password Textbox
         private void passwordTextbox_Click(object sender, EventArgs e)
         {
-            if (passwordTextbox.Text == "Password")
+            if (passwordTextbox.Text == "密码")
             {
                 passwordTextbox.Text = null;
                 passwordTextbox.PasswordChar = '*';
@@ -695,7 +695,7 @@ namespace QobuzDownloaderX
             {
                 passwordTextbox.ForeColor = Color.FromArgb(88, 92, 102);
                 passwordTextbox.UseSystemPasswordChar = true;
-                passwordTextbox.Text = "Password";
+                passwordTextbox.Text = "密码";
             }
         }
 
