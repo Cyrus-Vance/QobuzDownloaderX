@@ -1052,7 +1052,8 @@ namespace QobuzDownloaderX
 
                                 string[] path8 = { trackPath, finalTrackNamePath + audioFileType };
                                 string tagFilePath = Path.Combine(path8);
-                                string[] path9 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", qualityPath, artSize + ".jpg" };
+                                //string[] path9 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", qualityPath, artSize + ".jpg" };
+                                string[] path9 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", artSize + ".jpg" };
                                 string tagCoverArtFilePath = Path.Combine(path9);
 
                                 // Set file to tag
@@ -1278,7 +1279,8 @@ namespace QobuzDownloaderX
                         }
 
                         #region Digital Booklet
-                        string[] path12 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", qualityPath, "Digital Booklet.pdf" };
+                        //string[] path12 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", qualityPath, "Digital Booklet.pdf" };
+                        string[] path12 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", "Digital Booklet.pdf" };
                         string goodiesPath = Path.Combine(path12);
                         // If a booklet was found, save it.
                         if (goodiesPDF == null | goodiesPDF == "")
