@@ -128,7 +128,7 @@ namespace QobuzDownloaderX
             if (altLoginValue == "0")
             {
                 // Change alt login label text
-                altLoginLabel.Text = "Can't login? Click here";
+                altLoginLabel.Text = "无法登录？请点击这里";
 
                 // Hide alt login methods
                 altLoginTutLabel.Visible = false;
@@ -142,7 +142,7 @@ namespace QobuzDownloaderX
             else if (altLoginValue == "1")
             {
                 // Change alt login label text
-                altLoginLabel.Text = "Login normally? Click here";
+                altLoginLabel.Text = "登录正常？请点击这里";
 
                 // Hide standard login methods
                 emailTextbox.Visible = false;
@@ -155,14 +155,14 @@ namespace QobuzDownloaderX
             }
 
             // Set values for email textbox.
-            if (emailTextbox.Text != "Email")
+            if (emailTextbox.Text != "邮箱")
             {
                 emailTextbox.ForeColor = Color.FromArgb(186, 186, 186);
             }
             if (emailTextbox.Text == null | emailTextbox.Text == "")
             {
                 emailTextbox.ForeColor = Color.FromArgb(88, 92, 102);
-                emailTextbox.Text = "Email";
+                emailTextbox.Text = "邮箱";
             }
 
             // Set values for user_id textbox.
@@ -177,7 +177,7 @@ namespace QobuzDownloaderX
             }
 
             // Set values for password textbox.
-            if (passwordTextbox.Text != "Password")
+            if (passwordTextbox.Text != "密码")
             {
                 passwordTextbox.PasswordChar = '*';
                 passwordTextbox.UseSystemPasswordChar = false;
@@ -187,7 +187,7 @@ namespace QobuzDownloaderX
             {
                 passwordTextbox.ForeColor = Color.FromArgb(88, 92, 102);
                 passwordTextbox.UseSystemPasswordChar = true;
-                passwordTextbox.Text = "Password";
+                passwordTextbox.Text = "密码";
             }
 
             // Set values for user_auth_token textbox.
@@ -214,7 +214,7 @@ namespace QobuzDownloaderX
                 versionURLClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
 
                 // Grab response from Github to get Track IDs from Album response.
-                var versionURL = "https://api.github.com/repos/ImAiiR/QobuzDownloaderX/releases/latest";
+                var versionURL = "https://api.github.com/repos/Cyrus-Vance/QobuzDownloaderX/releases/latest";
                 var versionURLResponse = await versionURLClient.GetAsync(versionURL);
                 string versionURLResponseString = versionURLResponse.Content.ReadAsStringAsync().Result;
 
@@ -235,11 +235,11 @@ namespace QobuzDownloaderX
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("New version of QBDLX is available!\r\n\r\nInstalled version - " + currentVersion + "\r\nLatest version - " + newVersion + "\r\n\r\nChangelog Below\r\n==============\r\n" + changes.Replace("\\r\\n", "\r\n") + "\r\n==============\r\n\r\nWould you like to update?", "QBDLX | Update Available", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("新版本可用!\r\n\r\n当前安装版本 - " + currentVersion + "\r\n最新版本 - " + newVersion + "\r\n\r\n更新日志如下\r\n==============\r\n" + changes.Replace("\\r\\n", "\r\n") + "\r\n==============\r\n\r\n你想要更新吗?", "有新版本可用", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
                         // If "Yes" is clicked, open GitHub page and close QBDLX.
-                        Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/releases/latest");
+                        Process.Start("https://github.com/Cyrus-Vance/QobuzDownloaderX/releases/latest");
                         Application.Exit();
                     }
                     else if (dialogResult == DialogResult.No)
@@ -250,11 +250,11 @@ namespace QobuzDownloaderX
             }
             catch
             {
-                DialogResult dialogResult = MessageBox.Show("Connection to GitHub to check for an update has failed.\r\nWould you like to check for an update manually?\r\n\r\nYour current version is " + Assembly.GetExecutingAssembly().GetName().Version.ToString(), "QBDLX | GitHub Connection Failed", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("连接到GitHub检查新版本失败.\r\n你想要手动检查新版本吗?\r\n\r\n你当前的版本为 " + Assembly.GetExecutingAssembly().GetName().Version.ToString(), "GitHub版本检查失败", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     // If "Yes" is clicked, open GitHub page and close QBDLX.
-                    Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/releases/latest");
+                    Process.Start("https://github.com/Cyrus-Vance/QobuzDownloaderX/releases/latest");
                     Application.Exit();
                 }
                 else if (dialogResult == DialogResult.No)
@@ -323,7 +323,7 @@ namespace QobuzDownloaderX
                     Settings.Default.savedAltLoginValue = altLoginValue;
                     Settings.Default.Save();
 
-                    loginText.Text = "Getting App ID and Secret...";
+                    loginText.Text = "正在获取App ID和Secret...";
                     loginButton.Enabled = false;
                     getSecretBG.RunWorkerAsync();
                     #endregion
@@ -357,7 +357,7 @@ namespace QobuzDownloaderX
                     Settings.Default.savedAltLoginValue = altLoginValue;
                     Settings.Default.Save();
 
-                    loginText.Text = "Getting App ID and Secret...";
+                    loginText.Text = "正在获取App ID和Secret...";
                     loginButton.Enabled = false;
                     getSecretBG.RunWorkerAsync();
                     #endregion
@@ -416,7 +416,7 @@ namespace QobuzDownloaderX
 
                 // Set app_secret
                 appSecret = Encoding.UTF8.GetString(step3Data);
-                loginText.Invoke(new Action(() => loginText.Text = "ID and Secret Obtained! Logging in.."));
+                loginText.Invoke(new Action(() => loginText.Text = "ID和Secret获取成功！正在登录.."));
                 System.Threading.Thread.Sleep(1000);
             }
             catch (Exception bundleEx)
@@ -824,13 +824,13 @@ namespace QobuzDownloaderX
 
         private void altLoginLabel_Click(object sender, EventArgs e)
         {
-            if (altLoginLabel.Text == "Can't login? Click here")
+            if (altLoginLabel.Text == "无法登录？请点击这里")
             {
                 // Set value if alt login is needed.
                 altLoginValue = "1";
 
                 // Change alt login label text
-                altLoginLabel.Text = "Login normally? Click here";
+                altLoginLabel.Text = "登录正常？请点击这里";
 
                 // Hide standard login methods
                 emailTextbox.Visible = false;
@@ -847,7 +847,7 @@ namespace QobuzDownloaderX
                 altLoginValue = "0";
 
                 // Change alt login label text
-                altLoginLabel.Text = "Can't login? Click here";
+                altLoginLabel.Text = "无法登录？请点击这里";
 
                 // Hide alt login methods
                 altLoginTutLabel.Visible = false;
