@@ -4140,7 +4140,8 @@ namespace QobuzDownloaderX
 
                         string[] path8 = { trackPath, finalTrackNamePath + audioFileType };
                         string tagFilePath = Path.Combine(path8);
-                        string[] path9 = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+                        //string[] path9 = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+                        string[] path9 = { loc, albumArtistPath, albumNamePath, artSize + ".jpg" };
                         string tagCoverArtFilePath = Path.Combine(path9);
 
                         // Set file to tag
