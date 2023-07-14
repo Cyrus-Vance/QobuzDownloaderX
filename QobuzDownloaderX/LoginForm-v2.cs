@@ -276,17 +276,17 @@ namespace QobuzDownloaderX
                     #region Normal Login
 
                     #region Check if textboxes are valid
-                    if (emailTextbox.Text == "Email" | emailTextbox.Text == null | emailTextbox.Text == "")
+                    if (emailTextbox.Text == "邮箱" | emailTextbox.Text == null | emailTextbox.Text == "")
                     {
                         // If there's no email typed in.
-                        loginText.Invoke(new Action(() => loginText.Text = "No email, please input email first."));
+                        loginText.Invoke(new Action(() => loginText.Text = "没有输入邮箱，请先输入邮箱."));
                         return;
                     }
 
-                    if (passwordTextbox.Text == "Password")
+                    if (passwordTextbox.Text == "密码")
                     {
                         // If there's no password typed in.
-                        loginText.Invoke(new Action(() => loginText.Text = "No password typed, please input password first."));
+                        loginText.Invoke(new Action(() => loginText.Text = "没有输入密码，请先输入密码."));
                         return;
                     }
                     #endregion
