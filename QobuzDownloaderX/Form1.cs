@@ -250,7 +250,7 @@ namespace QobuzDownloaderX
 
         //    return date.ToString("yyyy-MM-dd");
         //}
-        
+
         static string DecodeEncodedNonAsciiCharacters(string value)
         {
             if (value != null)
@@ -995,9 +995,11 @@ namespace QobuzDownloaderX
                                 #endregion
 
                                 #region Cover Art Saving
-                                string[] path7 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", qualityPath, "Cover.jpg" };
+                                //string[] path7 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", qualityPath, "Cover.jpg" };
+                                string[] path7 = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", "Cover.jpg" };
                                 string coverArtPath = Path.Combine(path7);
-                                string[] path7Tag = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", qualityPath, artSize + ".jpg" };
+                                //string[] path7Tag = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", qualityPath, artSize + ".jpg" };
+                                string[] path7Tag = { loc, albumArtistPath, albumNamePath + " [" + albumIDArtist + "]", artSize + ".jpg" };
                                 string coverArtTagPath = Path.Combine(path7Tag);
 
                                 if (System.IO.File.Exists(coverArtPath))
@@ -2090,6 +2092,7 @@ namespace QobuzDownloaderX
                         }
 
                         #region Digital Booklet
+                        //string[] path12 = { loc, "- Labels", labelNamePath, albumArtistPath, albumNamePath + " [" + albumIDLabel + "]", qualityPath, "Digital Booklet.pdf" };
                         string[] path12 = { loc, "- Labels", labelNamePath, albumArtistPath, albumNamePath + " [" + albumIDLabel + "]", qualityPath, "Digital Booklet.pdf" };
                         string goodiesPath = Path.Combine(path12);
                         // If a booklet was found, save it.
@@ -2461,7 +2464,7 @@ namespace QobuzDownloaderX
                                 albumNamePath = albumNamePath.Substring(0, MaxLength).TrimEnd();
                             }
                             #endregion
-                            
+
                             #region Create Directories
                             // Create strings for disc folders
                             string discFolder = null;
@@ -3038,7 +3041,7 @@ namespace QobuzDownloaderX
 
                     // Grab metadata from API JSON response
                     JObject joTrackResponse = JObject.Parse(trackIDResponseString);
-                    
+
                     #region Availability Check (Track Avaialble?)
                     // Check if available at all.
                     string errorCheckTrack = (string)joTrackResponse["code"];
@@ -3086,7 +3089,7 @@ namespace QobuzDownloaderX
                     #region Get Information (Tags, Titles, etc.)
                     // Reset troublesome strings (strings that stick around if new value is null)
                     composerName = null;
-                    
+
                     // Grab cover art link
                     frontCoverImg = (string)joTrackResponse["album"]["image"]["large"];
                     // Get 150x150 artwork for cover art box
@@ -3382,7 +3385,7 @@ namespace QobuzDownloaderX
                                 {
                                     // Download selected cover art size for tagging files (happens every time a track is downloaded).
                                     imgClient.DownloadFile(new Uri(frontCoverImg.Replace("_max", "_" + artSize)), coverArtTagPath);
-                                    
+
                                     // Download max quality Cover Art to "Playlist.jpg" file in chosen path. 
                                     imgClient.DownloadFile(new Uri(playlistCoverImg), coverArtPath);
                                 }
@@ -3654,7 +3657,7 @@ namespace QobuzDownloaderX
             #region If URL has "album"
             // Set "loc" as the selected path.
             String loc = folderBrowserDialog.SelectedPath;
-            
+
             // Create HttpClient to grab Album ID
             var albumIDClient = new HttpClient();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
@@ -4078,9 +4081,11 @@ namespace QobuzDownloaderX
                         #endregion
 
                         #region Cover Art Saving
-                        string[] path7 = { loc, albumArtistPath, albumNamePath, qualityPath, "Cover.jpg" };
+                        //string[] path7 = { loc, albumArtistPath, albumNamePath, qualityPath, "Cover.jpg" };
+                        string[] path7 = { loc, albumArtistPath, albumNamePath, "Cover.jpg" };
                         string coverArtPath = Path.Combine(path7);
-                        string[] path7Tag = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+                        //string[] path7Tag = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+                        string[] path7Tag = { loc, albumArtistPath, albumNamePath, artSize + ".jpg" };
                         string coverArtTagPath = Path.Combine(path7Tag);
 
                         if (System.IO.File.Exists(coverArtPath))
@@ -4345,7 +4350,8 @@ namespace QobuzDownloaderX
                     }
 
                     // Delete image file used for tagging
-                    string[] path12 = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+                    //string[] path12 = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+                    string[] path12 = { loc, albumArtistPath, albumNamePath, artSize + ".jpg" };
                     string coverArtTagDelete = Path.Combine(path12);
 
                     if (System.IO.File.Exists(coverArtTagDelete))
@@ -4359,7 +4365,8 @@ namespace QobuzDownloaderX
                 }
 
                 #region Digital Booklet
-                string[] path11 = { loc, albumArtistPath, albumNamePath, qualityPath, "Digital Booklet.pdf" };
+                //string[] path11 = { loc, albumArtistPath, albumNamePath, qualityPath, "Digital Booklet.pdf" };
+                string[] path11 = { loc, albumArtistPath, albumNamePath, "Digital Booklet.pdf" };
                 string goodiesPath = Path.Combine(path11);
                 // If a booklet was found, save it.
                 if (goodiesPDF == null | goodiesPDF == "")
@@ -4395,7 +4402,7 @@ namespace QobuzDownloaderX
             {
                 string error = ex.ToString();
                 //output.Invoke(new Action(() => output.Text = String.Empty));
-                output.Invoke(new Action(() => output.AppendText("Failed to download (First Phase). Error information below.\r\n\r\n")));
+                output.Invoke(new Action(() => output.AppendText("下载失败 (第一阶段). 错误详情如下.\r\n\r\n")));
                 output.Invoke(new Action(() => output.AppendText(error)));
                 enableBoxes(sender, e);
                 return;
@@ -4409,7 +4416,7 @@ namespace QobuzDownloaderX
             #region If URL has "track"
             // Set "loc" as the selected path.
             String loc = folderBrowserDialog.SelectedPath;
-            
+
             // Set Track ID to the ID in the provided Qobuz link.
             trackIdString = albumId;
 
@@ -4595,7 +4602,7 @@ namespace QobuzDownloaderX
             #endregion
 
             #endregion
-            
+
             #region Filename Number Padding
             // Set default track number padding length
             var paddingLength = 2;
@@ -4747,7 +4754,7 @@ namespace QobuzDownloaderX
                     break;
             }
             #endregion
-            
+
             // Create streaming URL.
             createURL(sender, e);
 
@@ -4804,9 +4811,11 @@ namespace QobuzDownloaderX
                 #endregion
 
                 #region Cover Art Saving
-                string[] path7 = { loc, albumArtistPath, albumNamePath, qualityPath, "Cover.jpg" };
+                //string[] path7 = { loc, albumArtistPath, albumNamePath, qualityPath, "Cover.jpg" };
+                string[] path7 = { loc, albumArtistPath, albumNamePath, "Cover.jpg" };
                 string coverArtPath = Path.Combine(path7);
-                string[] path7Tag = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+                //string[] path7Tag = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+                string[] path7Tag = { loc, albumArtistPath, albumNamePath, artSize + ".jpg" };
                 string coverArtTagPath = Path.Combine(path7Tag);
 
                 if (System.IO.File.Exists(coverArtPath))
@@ -4859,7 +4868,8 @@ namespace QobuzDownloaderX
 
                 string[] path8 = { trackPath, finalTrackNamePath + audioFileType };
                 string tagFilePath = Path.Combine(path8);
-                string[] path9 = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+                //string[] path9 = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+                string[] path9 = { loc, albumArtistPath, albumNamePath, artSize + ".jpg" };
                 string tagCoverArtFilePath = Path.Combine(path9);
 
                 // Set file to tag
@@ -4906,7 +4916,7 @@ namespace QobuzDownloaderX
                                     tfile.Tag.Title = trackName + " (" + versionName + ")";
                                     break;
                             }
-                            
+
                         }
 
                         // Album Title tag
@@ -5071,7 +5081,8 @@ namespace QobuzDownloaderX
             }
 
             // Delete image file used for tagging
-            string[] path11 = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+            //string[] path11 = { loc, albumArtistPath, albumNamePath, qualityPath, artSize + ".jpg" };
+            string[] path11 = { loc, albumArtistPath, albumNamePath, artSize + ".jpg" };
             string coverArtTagDelete = Path.Combine(path11);
 
             if (System.IO.File.Exists(coverArtTagDelete))
@@ -5272,7 +5283,7 @@ namespace QobuzDownloaderX
             {
                 MaxLength = 36;
             }
-            
+
         }
         #endregion
 
